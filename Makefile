@@ -1,4 +1,11 @@
-NAME	=
+##
+## EPITECH PROJECT, 2020
+## lem-in
+## File description:
+## makefile
+##
+
+NAME	=	lem_in
 
 SRC	=	src/main.c		\
 		util/my_strlen.c	\

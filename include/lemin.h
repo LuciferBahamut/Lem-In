@@ -1,5 +1,12 @@
-#ifndef __TRUC_H__
-#define __TRUC_H__
+/*
+** EPITECH PROJECT, 2020
+** lem-in
+** File description:
+** .h
+*/
+
+#ifndef __LEMIN_H__
+#define __LEMIN_H__
 
 void my_putchar(char c);
 void my_putstr(char const *str);
