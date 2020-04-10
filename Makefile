@@ -8,10 +8,8 @@
 NAME	=	lem_in
 
 SRC	=	src/main.c		\
-		util/my_strlen.c	\
-		util/my_putchar.c	\
-		util/my_putstr.c	\
-		util/write_error.c
+		src/read_file.c		\
+		$(wildcard util/*.c)
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -22,6 +20,9 @@ CPPFLAGS=	-I./include/
 all	:	$(OBJ)
 		gcc $(CFLAGS) -o $(NAME) $(SRC) $(CPPFLAGS)
 
+debug	:	CFLAGS += -g
+debug	:	re
+
 clean	:
 		rm -f $(OBJ)
 
@@ -30,4 +31,4 @@ fclean	:	clean
 
 re	:	fclean all
 
-.PHONY	:	all clean fclean re
+.PHONY	:	all debug clean fclean re

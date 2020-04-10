@@ -6,10 +6,10 @@
 */
 
 #include <unistd.h>
+#include "lemin.h"
 
-int my_strlen(char const *str);
-
-void write_error(char *str)
+int write_error(char const *str)
 {
     write(2, str, my_strlen(str));
+    return (ERROR);
 }
