@@ -9,6 +9,7 @@ NAME	=	lem_in
 
 SRC	=	src/main.c		\
 		src/read_file.c		\
+		src/first_display.c	\
 		$(wildcard util/*.c)
 
 OBJ	=	$(SRC:.c=.o)

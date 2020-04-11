@@ -14,6 +14,7 @@
 typedef struct values_s
 {
     int lines;
+    char **str;
     // valeurs que l'on a dans le buffer apres la gest d'erreur
 } values_t;
 
@@ -23,6 +24,11 @@ typedef struct values_s
 char **read_file(values_t *v);
 
 //////////////////////
+//  DISPLAY VALUES  //
+//////////////////////
+void first_display(values_t *v);
+
+//////////////////////
 //  UTIL FUNCTIONS  //
 //////////////////////
 void my_putchar(char c);
@@ -30,6 +36,7 @@ void my_putstr(char const *str);
 int my_strlen(char const *str);
 char *my_strcat(char *dest, char *src);
 int write_error(char const *str);
+int my_strcmp(char const *str1, char const *str2);
 
 //////////////////////
 //  ERROR MESSAGES  //

@@ -9,23 +9,24 @@
 #include <stdio.h>
 #include "lemin.h"
 
-static void free_buff(char **buff, values_t *v)
+static void free_buff(values_t *v)
 {
     for (int i = 0; i != v->lines; i++)
-        free(buff[i]);
-    free(buff);
+        free(v->str[i]);
+    free(v->str);
+    free(v);
 }
 
 int main(int ac, char **av)
 {
-    char **buff;
     values_t *v = malloc(sizeof(values_t));
-                         
+
     if (v == NULL)
         return (ERROR);
     if (ac != 1 || av[0] == NULL)
         return (write_error(STR_ERROR_ARG));
-    buff = read_file(v);
-    free_buff(buff, v);
+    v->str = read_file(v);
+    first_display(v);
+    free_buff(v);
     return (SUCCESS);
 }
