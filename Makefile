@@ -18,7 +18,7 @@ CFLAGS	=	-W -Wextra -Wall
 CPPFLAGS=	-I./include/
 
 all	:	$(OBJ)
-		gcc $(CFLAGS) -o $(NAME) $(SRC) $(CPPFLAGS)
+		gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CPPFLAGS)
 
 debug	:	CFLAGS += -g
 debug	:	re

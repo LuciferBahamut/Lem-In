@@ -11,10 +11,10 @@
 
 char **split_this(char *file, int lines)
 {
-    char **split = malloc(sizeof(char *) * (lines + 2));
+    char **split = malloc(sizeof(char *) * (lines + 1));
 
     for (int i = 0; i != lines; i++)
-        split[i] = malloc(sizeof(char) * my_strlen(file));
+        split[i] = malloc(sizeof(char) * (my_strlen(file) + 1));
     for (int i = 0, j = 0, z = 0; file[i] != '\0'; i++, z++) {
         if (file[i] == '\n') {
             split[j][z] = '\0';
@@ -25,19 +25,23 @@ char **split_this(char *file, int lines)
         }
         split[j][z] = file[i];
     }
-    split[lines + 1] = NULL;
+    split[lines] = NULL;
     return (split);
 }
 
 static char **clean_buff(char **buff, int lines)
 {
+    char **str = malloc(sizeof(char *) * lines);
+
     for (int i = 0; i != lines; i++)
-        for (int j = 0; buff[i][j] != '\0'; j++)
-            if (buff[i][j] == '\n') {
-                buff[i][j] = '\0';
-                break;
-            }
-    return (buff);
+        str[i] = malloc(sizeof(char) * my_strlen(buff[i]));
+    for (int i = 0; i != lines; i++)
+        for (int j = 0, k = 0; buff[i][j]; j++, k++) {
+            if (buff[i][k] == '\n')
+                k++;
+            str[i][j] = buff[i][k];
+        }
+    return (str);
 }
 
 char **read_file(values_t *v)
