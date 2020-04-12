@@ -7,11 +7,13 @@
 
 NAME	=	lem_in
 
-SRC	=	src/main.c			\
-		src/read_file.c			\
-		src/first_display.c		\
-		src/fill_struct_for_algo.c	\
-		src/fill_struct.c		\
+SRC	=	src/main.c		\
+		src/read_file.c		\
+		src/first_display.c	\
+		src/fill_struct.c	\
+		src/fill_rooms.c	\
+		src/check_buff.c	\
+		src/multi_cmp.c		\
 		$(wildcard util/*.c)
 
 OBJ	=	$(SRC:.c=.o)

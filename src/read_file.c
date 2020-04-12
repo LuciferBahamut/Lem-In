@@ -51,7 +51,7 @@ char **read_file(values_t *v)
     char *file;
     char **split;
     int i = 0;
-    
+
     for (; getline(&buff, &size, stdin) != -1; i++) {
         if (i == 0) {
             file = malloc(sizeof(char) * (my_strlen(buff) + 1));
