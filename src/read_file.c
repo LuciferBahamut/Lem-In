@@ -31,16 +31,21 @@ char **split_this(char *file, int lines)
 
 static char **clean_buff(char **buff, int lines)
 {
-    char **str = malloc(sizeof(char *) * lines);
+    char **str = malloc(sizeof(char *) * (lines + 1));
+    int j = 0;
 
     for (int i = 0; i != lines; i++)
-        str[i] = malloc(sizeof(char) * my_strlen(buff[i]));
-    for (int i = 0; i != lines; i++)
-        for (int j = 0, k = 0; buff[i][j]; j++, k++) {
+        str[i] = malloc(sizeof(char) * (my_strlen(buff[i]) + 1));
+    for (int i = 0; i != lines; i++) {
+        for (int k = 0; buff[i][j]; j++, k++) {
             if (buff[i][k] == '\n')
                 k++;
             str[i][j] = buff[i][k];
         }
+        str[i][j] = '\0';
+        j = 0;
+    }
+    str[lines] = NULL;
     return (str);
 }
 
@@ -61,9 +66,10 @@ char **read_file(values_t *v)
         }
         file = my_strcat(file, buff);
     }
-    free(buff);
     v->lines = i;
     split = split_this(file, i);
     split = clean_buff(split, i);
+    free(buff);
+    free(file);
     return (split);
 }

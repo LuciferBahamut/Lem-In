@@ -23,14 +23,13 @@ static void after_display(values_t *v, int i)
 
 static void check_value(values_t *v)
 {
-    for (int i = 0; i != v->lines; i++) {
+    for (int i = 0; v->str[i] != NULL; i++) {
         if (v->str[i][0] == '#' && v->str[i][1] != '#')
             i++;
         for (int j = 0; v->str[i][j] != '\0'; j++)
             if (v->str[i][j] == '#' && j != 0 && j != 1)
                 v->str[i][j] = '\0';
     }
-    v->str[v->lines] = NULL;
 }
 
 static int del_com_bis(values_t *v, int i, int j)

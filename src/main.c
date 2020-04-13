@@ -11,6 +11,8 @@
 
 static void free_buff(values_t *v)
 {
+    for (int i = 0; v->str[i] != NULL; i++)
+        free(v->str[i]);
     for (int i = 0; v->ant->rooms[i] != NULL; i++)
         free(v->ant->rooms[i]);
     for (int i = 0; v->ant->tunnels[i] != NULL; i++)
@@ -18,8 +20,6 @@ static void free_buff(values_t *v)
     free(v->ant->rooms);
     free(v->ant->start);
     free(v->ant->end);
-//    for (int i = 0; v->str[i] != NULL; i++)
-//        free(v->str[i]);
     free(v->ant);
     free(v->str);
     free(v);
