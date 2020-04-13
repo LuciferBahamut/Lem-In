@@ -18,12 +18,16 @@ SRC	=	src/main.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
+CC	?=	gcc
+
 CFLAGS	=	-W -Wextra -Wall
 
 CPPFLAGS=	-I./include/
 
+name	:	all
+
 all	:	$(OBJ)
-		gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CPPFLAGS)
+		$(CC) -o $(NAME) $(OBJ)
 
 debug	:	CFLAGS += -g
 debug	:	re
@@ -36,4 +40,4 @@ fclean	:	clean
 
 re	:	fclean all
 
-.PHONY	:	all debug clean fclean re
+.PHONY	:	name all debug clean fclean re
