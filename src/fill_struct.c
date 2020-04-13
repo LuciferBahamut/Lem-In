@@ -70,5 +70,5 @@ void fill_struct_for_algo(values_t *v)
     i = 0;
     for (int k = recup_pos(v, "##start"); v->str[k][1] != '-'; i++, k++);
     v->ant->rooms = malloc(sizeof(char *) * (i + 1));
-    fill_rooms(v->ant, v, i, recup_pos(v, "##start"));
+    fill_rooms(v->ant, v, recup_pos(v, "##start"));
 }

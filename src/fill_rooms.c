@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "lemin.h"
 
-void fill_rooms(anthill_t *ant, values_t *v, int i, int k)
+void fill_rooms(anthill_t *ant, values_t *v, int k)
 {
     int j = 0;
 

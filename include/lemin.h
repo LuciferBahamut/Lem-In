@@ -37,7 +37,7 @@ char **read_file(values_t *v);
 //////////////////////
 int first_display(values_t *v);
 void fill_struct_for_algo(values_t *v);
-void fill_rooms(anthill_t *ant, values_t *v, int i, int k);
+void fill_rooms(anthill_t *ant, values_t *v, int k);
 
 //////////////////////
 //  ERROR HANDLING  //
