@@ -14,6 +14,7 @@ SRC	=	src/main.c		\
 		src/fill_rooms.c	\
 		src/check_buff.c	\
 		src/multi_cmp.c		\
+		src/check_tunnel.c	\
 		$(wildcard util/*.c)
 
 OBJ	=	$(SRC:.c=.o)
