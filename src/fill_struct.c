@@ -60,7 +60,7 @@ void fill_struct_for_algo(values_t *v)
     fill_start(v->ant, v->str[i]);
     v->ant->end = malloc(sizeof(char) * (my_strlen(v->str[j]) + 1));
     fill_end(v->ant, v->str[j]);
-    for (; v->str[j][1] != '-'; j++);
+    for (; check_tunnel(v->str[j]) != TRUE; j++);
     i = 0;
     for (int k = j; v->str[k] != NULL; i++, k++);
     v->ant->tunnels = malloc(sizeof(char *) * (i + 1));
@@ -68,7 +68,7 @@ void fill_struct_for_algo(values_t *v)
         v->ant->tunnels[m] = malloc(sizeof(char) * (my_strlen(v->str[k]) + 1));
     fill_tunnels(v->ant, j, v);
     i = 0;
-    for (int k = recup_pos(v, "##start"); v->str[k][1] != '-'; i++, k++);
+    for (int k = 1; check_tunnel(v->str[k]) != TRUE; i++, k++);
     v->ant->rooms = malloc(sizeof(char *) * (i + 1));
-    fill_rooms(v->ant, v, recup_pos(v, "##start"));
+    fill_rooms(v->ant, v);
 }
