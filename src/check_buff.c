@@ -24,10 +24,16 @@ static int check_command(char **str)
     int nb = 0;
 
     for (int i = 0; str[i] != NULL; i++) {
-        if (my_strcmp(str[i], "##start"))
+        if (my_strcmp(str[i], "##start")) {
+            if (my_strcmp(str[i + 1], "##end"))
+                return (TRUE);
             nb++;
-        if (my_strcmp(str[i], "##end"))
+        }
+        if (my_strcmp(str[i], "##end")) {
+            if (my_strcmp(str[i + 1], "##start"))
+                return (TRUE);
             nb++;
+        }
     }
     if (nb != 2)
         return (TRUE);
@@ -71,6 +77,8 @@ static char **check_other_lines(char **str)
 char **check_buff(values_t *v)
 {
     if (check_nbr(v->str[0]))
+        return (NULL);
+    if (check_start_end(v) == ERROR)
         return (NULL);
     v->str = check_wrong_cmd(v->str);
     v->str = check_other_lines(v->str);
