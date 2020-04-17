@@ -63,5 +63,6 @@ char **check_buff(values_t *v)
     v->str = check_other_lines(v->str);
     if (check_buff_bis(v->str))
         return (NULL);
+    v->str = check_invalid_line(v->str);
     return (v->str);
 }

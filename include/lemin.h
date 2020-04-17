@@ -47,6 +47,9 @@ int multi_cmp(char *str);
 char **check_buff(values_t *v);
 int check_start_end(values_t *v);
 int check_buff_bis(char **str);
+char **check_invalid_line(char **str);
+int cmp_value(int vl, int *room, char **split);
+int *atoi_parsing(char **str);
 
 //////////////////////
 //  UTIL FUNCTIONS  //
