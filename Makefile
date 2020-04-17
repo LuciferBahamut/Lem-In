@@ -13,6 +13,7 @@ SRC	=	src/main.c		\
 		src/fill_struct.c	\
 		src/fill_rooms.c	\
 		src/check_buff.c	\
+		src/check_buff_bis.c	\
 		src/multi_cmp.c		\
 		src/check_tunnel.c	\
 		src/check_start_end.c	\

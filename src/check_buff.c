@@ -19,27 +19,6 @@ static int check_nbr(char *str)
     return (FALSE);
 }
 
-static int check_command(char **str)
-{
-    int nb = 0;
-
-    for (int i = 0; str[i] != NULL; i++) {
-        if (my_strcmp(str[i], "##start")) {
-            if (my_strcmp(str[i + 1], "##end"))
-                return (TRUE);
-            nb++;
-        }
-        if (my_strcmp(str[i], "##end")) {
-            if (my_strcmp(str[i + 1], "##start"))
-                return (TRUE);
-            nb++;
-        }
-    }
-    if (nb != 2)
-        return (TRUE);
-    return (FALSE);
-}
-
 static char **check_wrong_cmd(char **str)
 {
     for (int i = 0; str[i] != NULL; i++)
@@ -82,7 +61,7 @@ char **check_buff(values_t *v)
         return (NULL);
     v->str = check_wrong_cmd(v->str);
     v->str = check_other_lines(v->str);
-    if (check_command(v->str))
+    if (check_buff_bis(v->str))
         return (NULL);
     return (v->str);
 }
