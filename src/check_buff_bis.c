@@ -42,11 +42,11 @@ static int check_tunnels(char **str)
     return (FALSE);
 }
 
-char **check_buff_bis(char **str)
+int check_buff_bis(char **str)
 {
     if (check_command(str))
-        return (NULL);
+        return (TRUE);
     if (check_tunnels(str))
-        return (NULL);
-    return (str);
+        return (TRUE);
+    return (FALSE);
 }

@@ -46,7 +46,7 @@ int check_tunnel(char *str);
 int multi_cmp(char *str);
 char **check_buff(values_t *v);
 int check_start_end(values_t *v);
-char **check_buff_bis(char **str);
+int check_buff_bis(char **str);
 
 //////////////////////
 //  UTIL FUNCTIONS  //
