@@ -9,26 +9,6 @@
 #include <stdio.h>
 #include "lemin.h"
 
-char **split_this(char *file, int lines)
-{
-    char **split = malloc(sizeof(char *) * (lines + 1));
-
-    for (int i = 0; i != lines; i++)
-        split[i] = malloc(sizeof(char) * (my_strlen(file) + 1));
-    for (int i = 0, j = 0, z = 0; file[i] != '\0'; i++, z++) {
-        if (file[i] == '\n') {
-            split[j][z] = '\0';
-            j++;
-            z = 0;
-            if (j == lines)
-                break;
-        }
-        split[j][z] = file[i];
-    }
-    split[lines] = NULL;
-    return (split);
-}
-
 static char **clean_buff(char **buff, int lines)
 {
     char **str = malloc(sizeof(char *) * (lines + 1));
@@ -47,6 +27,33 @@ static char **clean_buff(char **buff, int lines)
     }
     str[lines] = NULL;
     return (str);
+}
+
+char **split_this(char *file, int lines)
+{
+    char **split = malloc(sizeof(char *) * (lines + 1));
+
+    for (int i = 0; i != lines; i++)
+        split[i] = malloc(sizeof(char) * (my_strlen(file) + 1));
+    for (int i = 0, j = 0, z = 0; file[i] != '\0'; i++, z++) {
+        if (file[i] == '\n') {
+            split[j][z] = '\0';
+            j++;
+            z = 0;
+            if (j == lines)
+                break;
+        }
+        split[j][z] = file[i];
+    }
+    split[lines] = NULL;
+    split = clean_buff(split, lines);
+    return (split);
+}
+
+static void free_all(char *file, char *buff)
+{
+    free(buff);
+    free(file);
 }
 
 char **read_file(values_t *v)
@@ -70,8 +77,6 @@ char **read_file(values_t *v)
         return (NULL);
     v->lines = i;
     split = split_this(file, i);
-    split = clean_buff(split, i);
-    free(buff);
-    free(file);
+    free_all(file, buff);
     return (split);
 }

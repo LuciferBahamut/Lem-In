@@ -11,23 +11,14 @@
 //////////////////////
 //    STRUCTURES    //
 //////////////////////
-typedef struct anthill_s
-{
-    int nb_ant;
-    char *start;
-    char *end;
-    char **rooms;
-    char **tunnels;
-} anthill_t;
-
 typedef struct values_s
 {
     int lines;
     int err_lines;
+    int err_cmd;
     int ct;
     int pos_tunnel;
     char **str;
-    anthill_t *ant;
 } values_t;
 
 //////////////////////
