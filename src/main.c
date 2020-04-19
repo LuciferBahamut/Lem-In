@@ -28,6 +28,8 @@ static void free_buff(values_t *v)
 static int start (values_t *v)
 {
     v->str = read_file(v);
+    if (v->str == NULL)
+        return (ERROR);
     if (first_display(v) == ERROR)
         return (ERROR);
     fill_struct_for_algo(v);

@@ -66,6 +66,8 @@ char **read_file(values_t *v)
         }
         file = my_strcat(file, buff);
     }
+    if (i == 0)
+        return (NULL);
     v->lines = i;
     split = split_this(file, i);
     split = clean_buff(split, i);
