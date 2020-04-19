@@ -10,15 +10,16 @@ NAME	=	lem_in
 SRC	=	src/main.c			\
 		src/read_file.c			\
 		src/first_display.c		\
-		src/fill_struct.c		\
-		src/fill_rooms.c		\
-		src/check_buff.c		\
-		src/check_buff_bis.c		\
-		src/multi_cmp.c			\
+		src/check_cmd.c			\
+		src/check_nbr.c			\
+		src/check_other_lines.c		\
 		src/check_tunnel.c		\
-		src/check_start_end.c		\
+		src/del_com.c			\
+		src/found_pos_tunnel.c		\
+		src/multi_cmp.c			\
 		src/atoi_parsing.c		\
-		src/check_invalid_line.c	\
+		src/check_tunnel_negative.c	\
+		src/check_tunnel_rooms.c	\
 		$(wildcard util/*.c)
 
 OBJ	=	$(SRC:.c=.o)

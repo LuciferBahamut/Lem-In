@@ -8,17 +8,17 @@
 #include <stdlib.h>
 #include "lemin.h"
 
-int cmp_value(int vl, int *room, char **split)
+int cmp_value(int value, int *room, char **split)
 {
     int i = 0;
     int j = 0;
     int nb = 0;
 
-    for (j = 0; split[j] != NULL; j++);
-    for (i = 0; i != j; i++) {
-        if (vl != room[i])
+    for (; split[j] != NULL; j++);
+    for (; i != j; i++) {
+        if (value != room[i])
             nb++;
-        else if (vl == room[i])
+        else if (value == room[i])
             continue;
     }
     if (nb == j)

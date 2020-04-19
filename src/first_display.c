@@ -8,67 +8,53 @@
 #include <stdlib.h>
 #include "lemin.h"
 
-static void check_value(values_t *v)
+static void display_null(values_t *v)
 {
-    for (int i = 0; v->str[i] != NULL; i++) {
-        if (v->str[i][0] == '#' && v->str[i][1] != '#')
-            i++;
-        for (int j = 0; v->str[i][j] != '\0'; j++)
-            if (v->str[i][j] == '#' && j != 0 && j != 1)
-                v->str[i][j] = '\0';
-    }
-}
-
-static int del_com_bis(values_t *v, int i, int j)
-{
-    if (multi_cmp(v->str[i]) == FALSE) {
-        v->str[i] = NULL;
-        for (j = i; j != v->lines - 1; j++)
-            v->str[j] = v->str[j + 1];
-        v->str[j] = NULL;
-        i--;
-    }
-    return (i);
-}
-
-static void del_com(values_t *v)
-{
-    int j = 0;
-
-    for (int i = 0; v->str[i] != NULL; i++)
-        if (v->str[i][0] == '#' && v->str[i][1] != '#')
-            i = del_com_bis(v, i, j);
-}
-
-static void after_display(values_t *v, int i)
-{
-    my_putstr("#tunnels\n");
-    for (; v->str[i] != NULL; i++) {
-        if (v->str[i][0] == '#')
-            if (multi_cmp(v->str[i]) == FALSE)
-                i++;
+    for (int i = 1; v->str[i] != NULL; i++) {
         my_putstr(v->str[i]);
         my_putchar('\n');
     }
-    my_putstr("#move\n");
+}
+
+static void display_next(values_t *v)
+{
+    if (found_pos_tunnel(v) == SUCCESS) {
+        for (int i = 1; i != v->pos_tunnel; i++) {
+            my_putstr(v->str[i]);
+            my_putchar('\n');
+        }
+        my_putstr("#tunnels\n");
+        check_negative_tunnel(v);
+        check_tunnel_rooms(v);
+        for (int i = v->pos_tunnel; v->str[i] != NULL; i++) {
+            my_putstr(v->str[i]);
+            my_putchar('\n');
+        }
+        if (v->err_lines != ERROR) {
+            my_putstr("#move\n");
+        }
+    }
 }
 
 int first_display(values_t *v)
 {
-    int i = 1;
-
-    check_value(v);
-    del_com(v);
-    if ((v->str = check_buff(v)) == NULL)
+    if (check_nbr(v->str[0]))
         return (ERROR);
-    my_putstr("#number_of_ants\n");
     my_putstr(v->str[0]);
     my_putchar('\n');
     my_putstr("#rooms\n");
-    for (; check_tunnel(v->str[i]) != TRUE; i++) {
-        my_putstr(v->str[i]);
-        my_putchar('\n');
+    check_wrong_cmd(v);
+    check_other_lines(v);
+    if (v->err_lines == ERROR) {
+        display_null(v);
+        return (v->err_lines);
     }
-    after_display(v, i);
-    return (SUCCESS);
+    check_tunnels(v);
+    check_cmd(v);
+    if (v->err_lines == ERROR) {
+        display_null(v);
+        return (v->err_lines);
+    }
+    display_next(v);
+    return (v->err_lines);
 }

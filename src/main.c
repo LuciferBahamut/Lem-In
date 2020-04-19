@@ -28,12 +28,14 @@ static void free_buff(values_t *v)
 static int start (values_t *v)
 {
     v->str = read_file(v);
+    v->err_lines = SUCCESS;
     if (v->str == NULL)
         return (ERROR);
+    del_com(v);
+    my_putstr("#number_of_ants\n");
     if (first_display(v) == ERROR)
         return (ERROR);
-    fill_struct_for_algo(v);
-    free_buff(v);
+//    free_buff(v);
     return (SUCCESS);
 }
 

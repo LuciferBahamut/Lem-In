@@ -5,19 +5,21 @@
 ** check tunnel
 */
 
+#include <stdlib.h>
 #include "lemin.h"
 
-int check_tunnel(char *str)
+void check_tunnels(values_t *v)
 {
-    int nb = 0;
+    int nbr = 0;
 
-    for (int i = 0; str[i] != '\0'; i++)
-        if (str[i] == '-') {
-            nb++;
-            break;
-        }
-    if (nb != 0)
-        return (TRUE);
+    for (int i = 1; v->str[i] != NULL; i++)
+        for (int j = 0; v->str[i][j] != '\0'; j++)
+            if (v->str[i][j] == '-')
+                nbr++;
+    if (nbr == 0) {
+        v->err_lines = ERROR;
+        v->ct = FALSE;
+    }
     else
-        return (FALSE);
+        v->ct = TRUE;
 }

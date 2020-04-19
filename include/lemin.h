@@ -23,6 +23,9 @@ typedef struct anthill_s
 typedef struct values_s
 {
     int lines;
+    int err_lines;
+    int ct;
+    int pos_tunnel;
     char **str;
     anthill_t *ant;
 } values_t;
@@ -31,24 +34,18 @@ typedef struct values_s
 //  OPEN AND READ   //
 //////////////////////
 char **read_file(values_t *v);
-
-//////////////////////
-//  DISPLAY VALUES  //
-//////////////////////
 int first_display(values_t *v);
-void fill_struct_for_algo(values_t *v);
-void fill_rooms(anthill_t *ant, values_t *v);
-int check_tunnel(char *str);
-
-//////////////////////
-//  ERROR HANDLING  //
-//////////////////////
+void check_wrong_cmd(values_t *v);
+int check_nbr(char *str);
+void check_other_lines(values_t *v);
+void check_tunnels(values_t *v);
+void del_com(values_t *v);
+int found_pos_tunnel(values_t *v);
 int multi_cmp(char *str);
-char **check_buff(values_t *v);
-int check_start_end(values_t *v);
-int check_buff_bis(char **str);
-char **check_invalid_line(char **str);
-int cmp_value(int vl, int *room, char **split);
+void check_cmd(values_t *v);
+void check_negative_tunnel(values_t *v);
+void check_tunnel_rooms(values_t *v);
+int cmp_value(int value, int *room, char **split);
 int *atoi_parsing(char **str);
 
 //////////////////////
